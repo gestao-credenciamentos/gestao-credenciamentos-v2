@@ -1,11 +1,16 @@
-import Layout from "./layout/Layout";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./auth/Login";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
-    <Layout>
-      <h2>Bem-vindo ao sistema</h2>
-      <p>Estrutura inicial do sistema de credenciamentos.</p>
-    </Layout>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

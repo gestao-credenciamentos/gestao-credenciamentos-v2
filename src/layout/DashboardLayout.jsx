@@ -1,7 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 function DashboardLayout({ children }) {
+  const navigate = useNavigate();
+
+  const sair = () => {
+    navigate("/login");
+  };
+
   return (
     <div style={{ background: "#f2f6ff", minHeight: "100vh" }}>
-      {/* TOPO */}
       <header
         style={{
           background: "#fff",
@@ -19,10 +26,9 @@ function DashboardLayout({ children }) {
           </div>
         </div>
 
-        <button>Sair</button>
+        <button onClick={sair}>Sair</button>
       </header>
 
-      {/* CONTEÚDO */}
       <main style={{ padding: 32 }}>{children}</main>
     </div>
   );
