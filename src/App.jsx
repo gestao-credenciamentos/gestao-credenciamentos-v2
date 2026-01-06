@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+    <div style={{ fontFamily: "Arial, sans-serif", minHeight: "100vh" }}>
+      
+      {/* HEADER */}
+      <header
+        style={{
+          backgroundColor: "#0d47a1",
+          color: "#fff",
+          padding: "16px",
+        }}
+      >
+        <h1 style={{ margin: 0 }}>
+          CONSÓRCIO AMVAP SAÚDE
+        </h1>
+        <p style={{ margin: 0 }}>
+          Gestão de Credenciamentos
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      </header>
+
+      {/* CONTEÚDO PRINCIPAL */}
+      <main style={{ padding: "20px" }}>
+        <h2>Bem-vindo ao sistema</h2>
+        <p>
+          Estrutura inicial do sistema de credenciamentos.
+        </p>
+      </main>
+
+    </div>
+  );
 }
 
-export default App
+export default App;
