@@ -8,28 +8,53 @@ function DashboardLayout({ children }) {
   };
 
   return (
-    <div style={{ background: "#f2f6ff", minHeight: "100vh" }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(180deg, #eff6ff 0%, #f9fafb 100%)",
+        fontFamily:
+          "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont",
+        color: "#111827",
+      }}
+    >
+      {/* HEADER */}
       <header
         style={{
-          background: "#fff",
-          padding: "16px 32px",
+          background: "#ffffff",
+          padding: "20px 40px",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+          borderBottom: "1px solid #e5e7eb",
         }}
       >
         <div>
-          <strong>Gestão de Credenciamentos</strong>
-          <div style={{ fontSize: 12, color: "#555" }}>
+          <h1 style={{ margin: 0, fontSize: 32, fontWeight: 700 }}>
+            Gestão de Credenciamentos
+          </h1>
+          <p style={{ margin: 0, color: "#6b7280", fontSize: 14 }}>
             AMVAP SAÚDE – Consórcio Público Intermunicipal
-          </div>
+          </p>
         </div>
 
-        <button onClick={sair}>Sair</button>
+        <button
+          onClick={sair}
+          style={{
+            background: "#0d47a1",
+            color: "#fff",
+            border: "none",
+            padding: "10px 18px",
+            borderRadius: 8,
+            cursor: "pointer",
+            fontWeight: 600,
+          }}
+        >
+          Sair
+        </button>
       </header>
 
-      <main style={{ padding: 32 }}>{children}</main>
+      {/* CONTEÚDO */}
+      <main style={{ padding: "40px 48px" }}>{children}</main>
     </div>
   );
 }

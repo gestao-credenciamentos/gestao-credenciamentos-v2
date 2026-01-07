@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../layout/LoginLayout.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -9,7 +10,7 @@ function Login() {
   const entrar = (e) => {
     e.preventDefault();
 
-    // ADMIN FIXO (INICIAL)
+    // LOGIN FIXO INICIAL
     if (email === "admin" && senha === "admin") {
       navigate("/dashboard");
     } else {
@@ -18,28 +19,44 @@ function Login() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "60px auto" }}>
-      <h2>Login</h2>
+    <div className="login-page">
+      <div className="login-card">
 
-      <form onSubmit={entrar}>
-        <input
-          type="text"
-          placeholder="Usuário"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        {/* LOGO */}
+        <div className="logo">
+          <img src="/logo-amvap.png" alt="AMVAP SAÚDE" />
+        </div>
 
-        <input
-          type="password"
-          placeholder="Senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          required
-        />
+        {/* FORM */}
+        <form className="form" onSubmit={entrar}>
+          <input
+            type="text"
+            placeholder="Usuário"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-        <button type="submit">Entrar</button>
-      </form>
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            required
+          />
+
+          <button type="submit">CONFIRMAR</button>
+        </form>
+
+        {/* FOOTER */}
+        <div className="footer">
+          <hr />
+          <span className="footer-title">
+            SISTEMA DE CREDENCIAMENTOS
+          </span>
+        </div>
+
+      </div>
     </div>
   );
 }
