@@ -1,29 +1,31 @@
+import { useState } from "react";
+import ModalProcesso from "../components/ModalProcesso";
+
 export default function Processos() {
+  const [modalAberto, setModalAberto] = useState(false);
+
   return (
-    <div style={styles.page}>
-      <h1 style={styles.title}>Processos Licitatórios</h1>
-      <p style={styles.subtitle}>Gerenciar processos de credenciamento</p>
+    <div style={{ padding: "24px" }}>
+      <h1>Processos</h1>
 
-      <div style={styles.actions}>
-        <button style={styles.button}>+ Novo Processo</button>
-      </div>
+      <button
+        onClick={() => setModalAberto(true)}
+        style={{
+          marginTop: "16px",
+          padding: "10px 16px",
+          background: "#2563eb",
+          color: "#fff",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer"
+        }}
+      >
+        Novo Processo
+      </button>
 
-      <table style={styles.table}>
-        <thead>
-          <tr>
-            <th>Nº Processo</th>
-            <th>Objeto</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>001/2025</td>
-            <td>Credenciamento Médico</td>
-            <td>Aberto</td>
-          </tr>
-        </tbody>
-      </table>
+      {modalAberto && (
+        <ModalProcesso onClose={() => setModalAberto(false)} />
+      )}
     </div>
   );
 }
