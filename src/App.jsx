@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
+/* PÁGINAS */
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Processos from "./pages/Processos";
@@ -12,10 +13,15 @@ import Usuarios from "./pages/Usuarios";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
+        {/* LOGIN */}
         <Route path="/" element={<Login />} />
+
+        {/* DASHBOARD */}
         <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* MÓDULOS */}
         <Route path="/processos" element={<Processos />} />
         <Route path="/prestadores" element={<Prestadores />} />
         <Route path="/procedimentos" element={<Procedimentos />} />
@@ -24,6 +30,6 @@ export default function App() {
         <Route path="/relatorios" element={<Relatorios />} />
         <Route path="/usuarios" element={<Usuarios />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
