@@ -1,47 +1,52 @@
-import { useState } from "react";
-import "./login.css";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 
 export default function Login() {
   const [usuario, setUsuario] = useState("");
   const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState("");
 
-  function handleSubmit(e) {
+  const { login, logout } = useAuth();
+  const navigate = useNavigate();
+
+  // 🔐 mata qualquer sessão antiga
+  useEffect(() => {
+    logout();
+  }, []);
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log(usuario, senha);
+    setErro("");
+
+    const success = await login(usuario, senha);
+
+    if (!success) {
+      setErro("Usuário ou senha inválidos");
+      return;
+    }
+
+    navigate("/dashboard");
   }
 
   return (
-    <div className="login-wrapper">
-      <div className="login-card">
+    <form onSubmit={handleSubmit}>
+      <input
+        value={usuario}
+        onChange={(e) => setUsuario(e.target.value)}
+        placeholder="Usuário"
+      />
 
-        {/* LOGO – NÃO IMPORTA, VEM DO PUBLIC */}
-        <img
-          src="/logo-amvap.png"
-          alt="Logo AMVAP Saúde"
-          className="login-logo"
-        />
+      <input
+        type="password"
+        value={senha}
+        onChange={(e) => setSenha(e.target.value)}
+        placeholder="Senha"
+      />
 
-        <h2>Credenciamentos Sistemas</h2>
+      {erro && <p style={{ color: "red" }}>{erro}</p>}
 
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Usuário"
-            value={usuario}
-            onChange={(e) => setUsuario(e.target.value)}
-          />
-
-          <input
-            type="password"
-            placeholder="Senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-          />
-
-          <button type="submit">Entrar</button>
-        </form>
-
-      </div>
-    </div>
+      <button type="submit">Entrar</button>
+    </form>
   );
 }
