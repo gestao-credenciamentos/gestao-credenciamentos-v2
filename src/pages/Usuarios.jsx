@@ -1,3 +1,4 @@
+import { styles } from "../styles/pageStyles";
 export default function Usuarios() {
   return (
     <div style={styles.page}>

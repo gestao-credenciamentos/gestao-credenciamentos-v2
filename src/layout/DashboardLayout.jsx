@@ -1,62 +1,58 @@
-import { useNavigate } from "react-router-dom";
-
-function DashboardLayout({ children }) {
-  const navigate = useNavigate();
-
-  const sair = () => {
-    navigate("/login");
-  };
-
+export default function DashboardLayout({ children }) {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "linear-gradient(180deg, #eff6ff 0%, #f9fafb 100%)",
-        fontFamily:
-          "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont",
-        color: "#111827",
-      }}
-    >
-      {/* HEADER */}
-      <header
-        style={{
-          background: "#ffffff",
-          padding: "20px 40px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          borderBottom: "1px solid #e5e7eb",
-        }}
-      >
-        <div>
-          <h1 style={{ margin: 0, fontSize: 32, fontWeight: 700 }}>
-            Gestão de Credenciamentos
-          </h1>
-          <p style={{ margin: 0, color: "#6b7280", fontSize: 14 }}>
-            AMVAP SAÚDE – Consórcio Público Intermunicipal
-          </p>
-        </div>
+    <div style={styles.container}>
+      {/* SIDEBAR */}
+      <aside style={styles.sidebar}>
+        <h2 style={styles.logo}>AMVAP Saúde</h2>
 
-        <button
-          onClick={sair}
-          style={{
-            background: "#0d47a1",
-            color: "#fff",
-            border: "none",
-            padding: "10px 18px",
-            borderRadius: 8,
-            cursor: "pointer",
-            fontWeight: 600,
-          }}
-        >
-          Sair
-        </button>
-      </header>
+        <nav style={styles.nav}>
+          <a href="/dashboard" style={styles.link}>Dashboard</a>
+          <a href="/processos" style={styles.link}>Processos</a>
+          <a href="/prestadores" style={styles.link}>Prestadores</a>
+          <a href="/procedimentos" style={styles.link}>Procedimentos</a>
+          <a href="/credenciamentos" style={styles.link}>Credenciamentos</a>
+          <a href="/cadastro-reserva" style={styles.link}>Cadastro Reserva</a>
+          <a href="/relatorios" style={styles.link}>Relatórios</a>
+          <a href="/usuarios" style={styles.link}>Usuários</a>
+        </nav>
+      </aside>
 
       {/* CONTEÚDO */}
-      <main style={{ padding: "40px 48px" }}>{children}</main>
+      <main style={styles.main}>
+        {children}
+      </main>
     </div>
   );
 }
 
-export default DashboardLayout;
+const styles = {
+  container: {
+    display: "flex",
+    minHeight: "100vh",
+    background: "#f3f4f6",
+  },
+  sidebar: {
+    width: 260,
+    background: "#0d47a1",
+    color: "#fff",
+    padding: 24,
+  },
+  logo: {
+    marginBottom: 32,
+    fontSize: 20,
+  },
+  nav: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 12,
+  },
+  link: {
+    color: "#fff",
+    textDecoration: "none",
+    fontSize: 14,
+  },
+  main: {
+    flex: 1,
+    padding: 32,
+  },
+};

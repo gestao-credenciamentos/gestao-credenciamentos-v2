@@ -1,19 +1,37 @@
-import { supabase } from "../supabase";
-
-function Home() {
-  const sair = async () => {
-    await supabase.auth.signOut();
-    window.location.href = "/login";
-  };
-
+export default function Home() {
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Sistema AMVAP SAÚDE</h1>
-      <p>Usuário autenticado com sucesso.</p>
+    <>
+      <h1>Gestão de Credenciamentos</h1>
+      <p>AMVAP SAÚDE - Consórcio Público Intermunicipal</p>
 
-      <button onClick={sair}>Sair</button>
+      <div style={grid}>
+        <Card title="Processos Abertos" value="3" />
+        <Card title="Prestadores Ativos" value="22" />
+        <Card title="Procedimentos" value="21" />
+        <Card title="Credenciamentos" value="0" />
+      </div>
+    </>
+  );
+}
+
+function Card({ title, value }) {
+  return (
+    <div style={card}>
+      <p>{title}</p>
+      <strong>{value}</strong>
     </div>
   );
 }
 
-export default Home;
+const grid = {
+  display: "grid",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  gap: 16,
+  marginTop: 24,
+};
+
+const card = {
+  background: "#fff",
+  padding: 20,
+  borderRadius: 8,
+};

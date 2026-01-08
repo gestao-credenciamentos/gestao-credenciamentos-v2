@@ -19,24 +19,12 @@ function Card({
         borderRadius: 16,
         cursor: onClick ? "pointer" : "default",
         boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
-        transition: "all 0.2s ease",
         border: "1px solid #e5e7eb",
         display: "flex",
         flexDirection: "column",
         gap: 16,
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "translateY(-4px)";
-        e.currentTarget.style.boxShadow =
-          "0 20px 40px rgba(0,0,0,0.12)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "none";
-        e.currentTarget.style.boxShadow =
-          "0 10px 25px rgba(0,0,0,0.08)";
-      }}
     >
-      {/* ÍCONE */}
       {icone && (
         <div
           style={{
@@ -54,7 +42,6 @@ function Card({
         </div>
       )}
 
-      {/* TEXTO */}
       {tipo === "numero" ? (
         <>
           <span style={{ fontSize: 14, color: "#6b7280" }}>
@@ -72,27 +59,10 @@ function Card({
         </>
       ) : (
         <>
-          {/* TÍTULO GRANDE (AÇÃO) */}
-          <h3
-            style={{
-              margin: 0,
-              fontSize: 22,
-              fontWeight: 700,
-              color: "#0d47a1",
-            }}
-          >
+          <h3 style={{ margin: 0, fontSize: 18, color: "#0d47a1" }}>
             {titulo}
           </h3>
-
-          {/* DESCRIÇÃO MENOR */}
-          <p
-            style={{
-              margin: 0,
-              fontSize: 14,
-              color: "#6b7280",
-              lineHeight: 1.5,
-            }}
-          >
+          <p style={{ margin: 0, fontSize: 14, color: "#6b7280" }}>
             {descricao}
           </p>
         </>
@@ -101,12 +71,11 @@ function Card({
   );
 }
 
-function Dashboard() {
+export default function Dashboard() {
   const navigate = useNavigate();
 
   return (
     <DashboardLayout>
-      {/* ================= INDICADORES ================= */}
       <div
         style={{
           display: "grid",
@@ -115,37 +84,12 @@ function Dashboard() {
           marginBottom: 48,
         }}
       >
-        <Card
-          icone="📄"
-          corIcone="#dbeafe"
-          titulo="Processos Abertos"
-          descricao="3"
-          destaque="#0d47a1"
-        />
-        <Card
-          icone="🏥"
-          corIcone="#dcfce7"
-          titulo="Prestadores Ativos"
-          descricao="22"
-          destaque="#16a34a"
-        />
-        <Card
-          icone="🧬"
-          corIcone="#ede9fe"
-          titulo="Procedimentos"
-          descricao="21"
-          destaque="#7c3aed"
-        />
-        <Card
-          icone="👥"
-          corIcone="#fee2e2"
-          titulo="Credenciamentos"
-          descricao="0"
-          destaque="#dc2626"
-        />
+        <Card titulo="Processos Abertos" descricao="3" />
+        <Card titulo="Prestadores Ativos" descricao="22" />
+        <Card titulo="Procedimentos" descricao="21" />
+        <Card titulo="Credenciamentos" descricao="0" />
       </div>
 
-      {/* ================= MÓDULOS ================= */}
       <h2 style={{ fontSize: 22, fontWeight: 700, marginBottom: 24 }}>
         Módulos
       </h2>
@@ -159,63 +103,32 @@ function Dashboard() {
       >
         <Card
           tipo="modulo"
-          icone="📄"
-          corIcone="#dbeafe"
-          titulo="Gerenciar processos de credenciamento"
-          descricao="Processos Licitatórios"
+          titulo="Processos Licitatórios"
+          descricao="Gerenciar processos"
           onClick={() => navigate("/processos")}
         />
 
         <Card
           tipo="modulo"
-          icone="🏥"
-          corIcone="#dcfce7"
-          titulo="Cadastrar e gerenciar prestadores"
-          descricao="Prestadores"
+          titulo="Prestadores"
+          descricao="Gerenciar prestadores"
+          onClick={() => navigate("/prestadores")}
         />
 
         <Card
           tipo="modulo"
-          icone="🧬"
-          corIcone="#ede9fe"
-          titulo="Procedimentos e especialidades"
-          descricao="Procedimentos Médicos"
+          titulo="Procedimentos"
+          descricao="Especialidades médicas"
+          onClick={() => navigate("/procedimentos")}
         />
 
         <Card
           tipo="modulo"
-          icone="👥"
-          corIcone="#ffedd5"
-          titulo="Vincular prestadores aos processos"
-          descricao="Credenciamentos"
-        />
-
-        <Card
-          tipo="modulo"
-          icone="🗂️"
-          corIcone="#ede9fe"
-          titulo="Gerenciar cadastro reserva"
-          descricao="Cadastro Reserva"
-        />
-
-        <Card
-          tipo="modulo"
-          icone="📊"
-          corIcone="#fce7f3"
-          titulo="Relatórios por processo"
-          descricao="Relatórios"
-        />
-
-        <Card
-          tipo="modulo"
-          icone="👤"
-          corIcone="#dbeafe"
-          titulo="Gerenciar usuários do sistema"
-          descricao="Usuários"
+          titulo="Credenciamentos"
+          descricao="Vincular prestadores"
+          onClick={() => navigate("/credenciamentos")}
         />
       </div>
     </DashboardLayout>
   );
 }
-
-export default Dashboard;

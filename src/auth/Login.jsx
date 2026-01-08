@@ -1,40 +1,34 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../layout/LoginLayout.css";
+import "./login.css";
 
-function Login() {
-  const [email, setEmail] = useState("");
+export default function Login() {
+  const [usuario, setUsuario] = useState("");
   const [senha, setSenha] = useState("");
-  const navigate = useNavigate();
 
-  const entrar = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-
-    // LOGIN FIXO INICIAL
-    if (email === "admin" && senha === "admin") {
-      navigate("/dashboard");
-    } else {
-      alert("Usuário ou senha inválidos");
-    }
-  };
+    console.log(usuario, senha);
+  }
 
   return (
-    <div className="login-page">
+    <div className="login-wrapper">
       <div className="login-card">
 
-        {/* LOGO */}
-        <div className="logo">
-          <img src="/logo-amvap.png" alt="AMVAP SAÚDE" />
-        </div>
+        {/* LOGO – NÃO IMPORTA, VEM DO PUBLIC */}
+        <img
+          src="/logo-amvap.png"
+          alt="Logo AMVAP Saúde"
+          className="login-logo"
+        />
 
-        {/* FORM */}
-        <form className="form" onSubmit={entrar}>
+        <h2>Credenciamentos Sistemas</h2>
+
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Usuário"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+            value={usuario}
+            onChange={(e) => setUsuario(e.target.value)}
           />
 
           <input
@@ -42,23 +36,12 @@ function Login() {
             placeholder="Senha"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
-            required
           />
 
-          <button type="submit">CONFIRMAR</button>
+          <button type="submit">Entrar</button>
         </form>
-
-        {/* FOOTER */}
-        <div className="footer">
-          <hr />
-          <span className="footer-title">
-            SISTEMA DE CREDENCIAMENTOS
-          </span>
-        </div>
 
       </div>
     </div>
   );
 }
-
-export default Login;
