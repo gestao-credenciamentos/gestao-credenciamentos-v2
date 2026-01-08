@@ -1,6 +1,5 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
 
-/* PÁGINAS */
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Processos from "./pages/Processos";
@@ -15,13 +14,8 @@ export default function App() {
   return (
     <HashRouter>
       <Routes>
-        {/* LOGIN */}
         <Route path="/" element={<Login />} />
-
-        {/* DASHBOARD */}
         <Route path="/dashboard" element={<Dashboard />} />
-
-        {/* MÓDULOS */}
         <Route path="/processos" element={<Processos />} />
         <Route path="/prestadores" element={<Prestadores />} />
         <Route path="/procedimentos" element={<Procedimentos />} />
